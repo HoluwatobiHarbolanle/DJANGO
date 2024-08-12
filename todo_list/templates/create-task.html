@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form{
+            width: 30%;
+            height: 50vh;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            padding: 1rem;
+            border-radius: 5px;
+            background-color: rgba(90, 88, 88, 0.5);
+            box-shadow: (-10px, -10px, black);
+        }
+        input{
+            padding: 10px;
+            width: 15rem;
+            border-radius: 5px;
+            /* border: 5px; */
+        }
+        #status{
+            max-width: 5%;
+        }
+    </style>
+</head>
+<body>
+    <form action="" method="post">
+        <h1>Create a new task:</h1>
+        <label for="title">Title:<input type="text" id="title"></label>
+        <label for="status">Complete:<input type="checkbox" name="complete" id="status"></label>
+        <label for="date-time">Due date:<input type="datetime-local" name="datetime" id="date-time"></label>
+    </form>
+</body>
+</html>
