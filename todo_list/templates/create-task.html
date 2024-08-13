@@ -24,16 +24,23 @@
             /* border: 5px; */
         }
         #status{
-            max-width: 5%;
+            max-width: 4%;
+        }
+        #submit{
+            width: 5rem;
+            text-align: center;
+            margin: auto;
         }
     </style>
 </head>
 <body>
-    <form action="" method="post">
+    <form action="{% url 'create_task' %}" method="post">
+        {% csrf_token %}
         <h1>Create a new task:</h1>
-        <label for="title">Title:<input type="text" id="title"></label>
-        <label for="status">Complete:<input type="checkbox" name="complete" id="status"></label>
+        <label for="title">Title:<input type="text" name="title"></label>
+        <label for="status">Complete:<input type="checkbox" name="status" id="status"></label>
         <label for="date-time">Due date:<input type="datetime-local" name="datetime" id="date-time"></label>
+        <input type="submit" id="submit">
     </form>
 </body>
 </html>
