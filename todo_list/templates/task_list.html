@@ -4,16 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        main{
+    <!-- <style>
+        /* main{
             width: 50vw;
-            max-height: max-content;
             margin: auto;
             margin-top: 25vh;
             box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.5);
             border-radius: 5px;
             padding: 5px
-        }
+        } */
         .first-ul{
             list-style: none;
             width: 90%;
@@ -68,18 +67,74 @@
             font-weight: 700;
             margin-block: 0;
         }
+    </style> -->
+    <style>
+        main{
+            width: 50vw;
+            /* border: 5px solid black; */
+            box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.5);
+            margin: auto;
+            margin-top: 25vh;
+            padding: 0.5rem;
+        }
+        h1{
+            text-align: center;
+        }
+        table{
+            margin: auto;
+            margin-bottom: 1rem;
+            /* display: table; */
+        }
+        .body-tag{
+            border-radius: 5px;
+            box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.5);
+            margin-bottom: 1rem;
+            /* border-spacing: 1rem; */
+        }
+
+        th, td{
+            text-align: center;
+            padding: 1rem 0 1rem 1rem;
+            column-gap: normal;
+        }
+        .update{
+            background-color: black;
+            color: white;
+            padding: 1rem;
+            border-radius: 5px;
+            box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.5);
+        }
+        .delete{
+            background-color: red;
+            color: white;
+            padding: 1rem;
+            border-radius: 5px;
+            box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.5);  
+        }
+        a.create{
+            width: fit-content;
+            height: fit-content;
+            font-size: medium;
+            text-align: center;
+            color: black;
+            font-weight: bold;
+            padding: 20vw;
+        }
+        a.create:active{
+            color: green;
+        }
     </style>
 </head>
 <body>
     <main>
         <h1>Task List</h1>
-        <ul class="first-ul">
-            {%for task in tasks %}
+        <!-- <ul class="first-ul">
+            {% for task in tasks %}
             <ul class="second-ul">
             <li>
-                <p class="task1">{{task.title}}</p>
-                <p class="task2">{{task.complete}}</p>
-                <p class="task3">{{task.due_date}}</p>
+                <p>{{task.title}}</p>
+                <p>{{task.complete}}</p>
+                <p>{{task.due_date}}</p>
             </li>
             <div>
                 <a href="{% url 'update_task' task.id %}" class="update">Update</a>
@@ -87,8 +142,31 @@
             </div>
             </ul>
             {% endfor %}
-        </ul>
-        <a href="{% url 'create_task' %}" class="create">Create new</a>
+        </ul> -->
+        <table>
+            <thead>
+            <tr>
+                <th>Status</th>
+                <th>Title</th>
+                <th>Due date</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for task in tasks %}
+                <tr class="body-tag">
+                    <td>{{task.complete}}</td>
+                    <td>{{task.title}}</td>
+                    <td>{{task.due_date}}</td>
+                    <td>
+                        <a href="{% url 'update_task' task.id %}" class="update">Update</a>
+                        <a href="{% url 'delete_task' task.id %}" class="delete">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'create_task' %}" class="create">CREATE NEW</a>
     </main>
 </body>
 </html>

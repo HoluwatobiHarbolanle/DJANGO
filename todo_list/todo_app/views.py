@@ -42,3 +42,17 @@ def delete_task(request, task_id):
     task.delete()
     return redirect('task_list')
     # return render(request, 'task_list.html')
+
+"""
+def create_task(request):
+    if request.method == 'POST':
+        form = TaskForm(request.POST) submit the form data with the model instance.
+        if form.is_valid()
+            form.save()
+            return redirect('task_list')
+
+def update_task(request, pk):
+    task = get_object_or_404(Task, pk=pk)
+    if request.method == 'POST':
+        
+"""
