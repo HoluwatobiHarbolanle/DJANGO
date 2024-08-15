@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -69,62 +70,77 @@
         }
     </style> -->
     <style>
-        main{
+        main {
             width: 50vw;
             /* border: 5px solid black; */
             box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.5);
             margin: auto;
             margin-top: 25vh;
             padding: 0.5rem;
-        }
-        h1{
             text-align: center;
         }
-        table{
+
+        h1 {
+            text-align: center;
+        }
+
+        table {
             margin: auto;
             margin-bottom: 1rem;
             /* display: table; */
         }
-        .body-tag{
+
+        .body-tag {
             border-radius: 5px;
             box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.5);
             margin-bottom: 1rem;
             /* border-spacing: 1rem; */
         }
 
-        th, td{
+        th,
+        td {
             text-align: center;
             padding: 1rem 0 1rem 1rem;
             column-gap: normal;
         }
-        .update{
+
+        .update {
             background-color: black;
             color: white;
             padding: 1rem;
             border-radius: 5px;
             box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.5);
         }
-        .delete{
+
+        .delete {
             background-color: red;
             color: white;
             padding: 1rem;
             border-radius: 5px;
-            box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.5);  
+            box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.5);
         }
-        a.create{
+
+        a.create {
             width: fit-content;
             height: fit-content;
             font-size: medium;
             text-align: center;
             color: black;
             font-weight: bold;
-            padding: 20vw;
+            padding: 1rem 2rem; 
+            display: inline-block; 
+            border-radius: 5px; 
+            background-color: #f0f0f0; 
+            text-decoration: none; 
+            margin: 1rem 0;
         }
-        a.create:active{
+
+        a.create:active {
             color: green;
         }
     </style>
 </head>
+
 <body>
     <main>
         <h1>Task List</h1>
@@ -145,17 +161,17 @@
         </ul> -->
         <table>
             <thead>
-            <tr>
-                <th>Status</th>
-                <th>Title</th>
-                <th>Due date</th>
-                <th>Actions</th>
-            </tr>
+                <tr>
+                    <th>Status</th>
+                    <th>Title</th>
+                    <th>Due date</th>
+                    <th>Actions</th>
+                </tr>
             </thead>
             <tbody>
                 {% for task in tasks %}
                 <tr class="body-tag">
-                    <td>{{task.complete}}</td>
+                    <td><input type="checkbox" {% if task.complete %}checked{% endif %}></td>
                     <td>{{task.title}}</td>
                     <td>{{task.due_date}}</td>
                     <td>
@@ -169,4 +185,5 @@
         <a href="{% url 'create_task' %}" class="create">CREATE NEW</a>
     </main>
 </body>
+
 </html>

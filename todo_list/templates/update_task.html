@@ -4,12 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        form{
+            display: flex;
+            flex-direction: column;
+            border-radius: 5px;
+            background-color: rgba(90, 88, 88, 0.5);
+            width: fit-content;
+            padding: 1rem;
+            margin: auto;
+            margin-top: 25vh;
+            box-shadow: 0 0 3px 2px black;
+        }
+        input{
+            margin-bottom: 5rem;
+            padding: 0.5rem;
+            border-radius: 5px;
+            border: 1px solid black;
+        }
+    </style>
 </head>
 <body>
     <form action="{% url 'update_task' task.id %}" method="post">
         {% csrf_token %}
         <label for="title">Title:<input type="text" name="title" value="{{task.title}}"></label>
-        <label for="status">Complete:<input type="checkbox" name="status" id="status" value="{{task.complete}}"></label>
+        <label for="status">Complete:<input type="checkbox" name="status" id="status" {% if task.complete %}checked{% endif %}></label>
         <label for="date-time">Due date:<input type="datetime-local" name="datetime" id="date-time" value="{{task.due_date}}"></label>
         <input type="submit" id="submit">
     </form>
