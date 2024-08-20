@@ -1,25 +1,65 @@
 from django.shortcuts import redirect, render
 from .models import Task
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
+from django.contrib.auth.models import User
+from .forms import RegisterForm
 
 # Create your views here.
 def index(request):
     return render(request, "base.html")
 
+def login(request):
+    if request.method == 'POST':
+        return redirect('task_list')
+
+
+# def registration(request):
+#     if request.method == 'POST':
+#         username = request.POST.get('username')
+#         email = request.POST.get('email')
+#         password = request.POST.get('password1')
+#         confirm_password = request.POST.get('password2')
+#         if password == confirm_password:
+#             usr = User.objects.create_user(
+#                 username = username,
+#                 email = email,
+#                 password = password
+#             )
+#             return redirect('login')
+#         else:
+#             return render(request, 'registration.html', {'error': 'Passwords do not match.'})
+#     return render(request, 'registration.html')
+
+def registration(request):
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login')
+        else:
+            return render(request, 'register.html', {'error': 'Invalid form data', 'form': form})
+    else:
+        form = RegisterForm()
+        return render(request, 'register.html', {'form': form})
+
 @login_required
 def task_lists(request):
-    tasks = Task.objects.all()
+    u = request.user
+    tasks = Task.objects.filter(Q(created_by = u) & Q(assigned_to = u))
 
     return render(request, "task_list.html", {"tasks": tasks})
 
-def create_new(request):
+@login_required
+def create_new_task(request):
     if request.method == 'POST':
-        task = Task(
+        task = Task.objects.create(
             title = request.POST.get('title'),
             complete = request.POST.get('status', 'off') == 'on',
-            due_date = request.POST.get('datetime')
+            due_date = request.POST.get('datetime'),
+            created_by = request.user,
+            assigned_to = request.user
         )
-        task.save()
         return redirect('task_list')
     return render(request, 'create-task.html')
 
