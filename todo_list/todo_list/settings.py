@@ -129,9 +129,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/task_list'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'bolanleoluwatobi844@gmail.com'
-EMAIL_HOST_PASSWORD = 'tobi2409'
+EMAIL_HOST_PASSWORD = 'rjkg xpbf zhgt udas'

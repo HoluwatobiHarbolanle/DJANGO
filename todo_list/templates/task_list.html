@@ -145,7 +145,10 @@
     <main>
         <h1>Your Task List</h1>
         <p>{{ form.username }}</p>
-        <a href="">Logout</a>
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
         <!-- <ul class="first-ul">
             {% for task in tasks %}
             <ul class="second-ul">

@@ -4,16 +4,23 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.contrib.auth.models import User
 from .forms import RegisterForm
-
+from django.contrib.auth import login
+from django.contrib.auth import logout as auth_logout
 # Create your views here.
 def index(request):
     return render(request, "base.html")
 
 def login(request):
-    if request.method == 'POST':
+        login(request)
         return redirect('task_list')
 
 
+def logout_view(request):
+    if request.method == 'POST':
+        auth_logout(request)
+    return render(request, 'logout.html')
+
+    # return render(request, 'logout.html')
 # def registration(request):
 #     if request.method == 'POST':
 #         username = request.POST.get('username')
@@ -42,6 +49,7 @@ def registration(request):
     else:
         form = RegisterForm()
         return render(request, 'register.html', {'form': form})
+
 
 @login_required
 def task_lists(request):
