@@ -80,8 +80,30 @@
             text-align: center;
         }
 
-        h1 {
-            text-align: center;
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5rem;
+            /* justify-content: space-between; */
+        }
+        .username{
+            font-size: large;
+            font-style: italic;
+            font-weight: 600;
+        }
+        button{
+            background-color: black;
+            color: white;
+        }
+        button:hover{
+            transform: translateX(-1);
+            scale: 1;
+        }
+        div{
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
         table {
@@ -143,12 +165,16 @@
 
 <body>
     <main>
-        <h1>Your Task List</h1>
-        <p>{{ form.username }}</p>
-        <form action="{% url 'logout' %}" method="post">
-            {% csrf_token %}
-            <button type="submit">Logout</button>
-        </form>
+        <header>
+            <h1>Your Task List</h1>
+            <div>
+                <p class="username">{{ user.username }}</p>
+                <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Logout</button>
+                </form>
+            </div>
+        </header>
         <!-- <ul class="first-ul">
             {% for task in tasks %}
             <ul class="second-ul">

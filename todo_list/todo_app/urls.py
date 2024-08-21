@@ -3,10 +3,10 @@ from . import views
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    # path('',views.index, name='index'),
-    path('/', views.registration, name= 'register'),
+    path('',views.index, name='index'),
+    path('register/', views.registration, name= 'register'),
     path('login', views.login, name='login'),
-    path('logout/', views.logout_view, name='logout'),
+    path('logout/', auth_views.LogoutView.as_view(template_name = 'logout.html'), name='logout'),
     path('task_list/', views.task_lists, name='task_list'),
     path('create_task/', views.create_new_task, name='create_task'),
     path('update_task/<int:task_id>/', views.update_task, name='update_task'),

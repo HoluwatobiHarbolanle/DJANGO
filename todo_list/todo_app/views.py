@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from .forms import RegisterForm
 from django.contrib.auth import login
 from django.contrib.auth import logout as auth_logout
+
 # Create your views here.
 def index(request):
     return render(request, "base.html")
@@ -43,7 +44,7 @@ def registration(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('login')
+            return redirect('task_list')
         else:
             return render(request, 'register.html', {'error': 'Invalid form data', 'form': form})
     else:
@@ -56,7 +57,7 @@ def task_lists(request):
     u = request.user
     tasks = Task.objects.filter(Q(created_by = u) & Q(assigned_to = u))
 
-    return render(request, "task_list.html", {"tasks": tasks})
+    return render(request, "task_list.html", {"tasks": tasks, 'user':u})
 
 @login_required
 def create_new_task(request):
