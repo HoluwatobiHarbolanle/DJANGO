@@ -10,5 +10,6 @@ class Task(models.Model):
     created_by = models.ForeignKey(User, related_name= 'created_tasks', on_delete=models.SET_NULL, null=True, blank=True)
     assigned_to = models.ForeignKey(User, related_name= 'assigned_tasks', on_delete=models.SET_NULL, null=True, blank=True)
 
-    def __str__(self):
-        return self.title
+    class Meta:
+        permissions = [('can_edit_task', 'Can_edit_task'),
+                       ('can_delete_user', 'Can_delete_task')]

@@ -1,8 +1,8 @@
 from django.shortcuts import redirect, render
 from .models import Task
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.db.models import Q
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from .forms import RegisterForm
 from django.contrib.auth import login
 from django.contrib.auth import logout as auth_logout
@@ -55,7 +55,8 @@ def registration(request):
 @login_required
 def task_lists(request):
     u = request.user
-    tasks = Task.objects.filter(Q(created_by = u) & Q(assigned_to = u))
+    # tasks = Task.objects.filter(Q(created_by = u) | Q(assigned_to = u))
+    tasks = (Task.objects.filter(created_by = u) or Task.objects.filter(assigned_to = u).distinct()).order_by('created')
 
     return render(request, "task_list.html", {"tasks": tasks, 'user':u})
 
@@ -72,6 +73,7 @@ def create_new_task(request):
         return redirect('task_list')
     return render(request, 'create-task.html')
 
+@permission_required('can_edit_task')
 def update_task(request, task_id):
     task = Task.objects.get(id=task_id)
     if request.method == 'POST':
@@ -83,6 +85,7 @@ def update_task(request, task_id):
     return render(request, 'update_task.html', {'task': task})
 
 
+@permission_required('can_delete_task')
 def delete_task(request, task_id):
     task = Task.objects.get(id = task_id)
     task.delete()

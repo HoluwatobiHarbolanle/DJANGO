@@ -20,6 +20,7 @@
     <form action="{% url 'register' %}" method="post">
         {% csrf_token %}
         {{ form.as_p }}
+        <!-- <label for="username"><input type="text" name="username"></label> -->
         <input type="submit" value="Sign up">
         <p>Have an account? <a href="{% url 'login' %}">Login</a></p>
     </form>
