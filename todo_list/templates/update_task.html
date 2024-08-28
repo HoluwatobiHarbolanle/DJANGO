@@ -25,11 +25,11 @@
     </style>
 </head>
 <body>
-    <form action="{% url 'update_task' task.id %}" method="post">
+    <form action="{% url 'update_task' task.pk %}" method="post">
         {% csrf_token %}
         <label for="title">Title:<input type="text" name="title" value="{{task.title}}"></label>
-        <label for="status">Complete:<input type="checkbox" name="status" id="status" {% if task.complete %}checked{% endif %}></label>
-        <label for="date-time">Due date:<input type="datetime-local" name="datetime" id="date-time" value="{{task.due_date}}"></label>
+        <label for="status">Complete:<input type="checkbox" name="complete" id="status" {% if task.complete %}checked{% endif %}></label>
+        <label for="date-time">Due date:<input type="datetime-local" name="due_date" id="date-time" value="{{task.due_date|date:'Y-m-d\TH:i'}}"></label>
         <input type="submit" id="submit">
     </form>
 </body>

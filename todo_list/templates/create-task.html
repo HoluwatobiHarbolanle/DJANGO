@@ -38,8 +38,8 @@
         {% csrf_token %}
         <h1>Create a new task:</h1>
         <label for="title">Title:<input type="text" name="title"></label>
-        <label for="status">Complete:<input type="checkbox" name="status" id="status"></label>
-        <label for="date-time">Due date:<input type="datetime-local" name="datetime" id="date-time"></label>
+        <label for="status">Complete:<input type="checkbox" name="complete" id="status"></label>
+        <label for="date-time">Due date:<input type="datetime-local" name="due_date" id="date-time"></label>
         <input type="submit" id="submit">
     </form>
 </body>
