@@ -25,7 +25,7 @@
     </style>
 </head>
 <body>
-    <form action="{% url 'update_task' task.pk %}" method="post">
+    <form action="{% url 'update_task' task.id %}" method="post">
         {% csrf_token %}
         <label for="title">Title:<input type="text" name="title" value="{{task.title}}"></label>
         <label for="status">Complete:<input type="checkbox" name="complete" id="status" {% if task.complete %}checked{% endif %}></label>

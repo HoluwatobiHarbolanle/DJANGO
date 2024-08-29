@@ -192,7 +192,7 @@
                     <td>{{task.title}}</td>
                     <td>{{task.due_date}}</td>
                     <td>
-                        <a href="{% url 'update_task' task.pk %}" class="update">Update</a>
+                        <a href="{% url 'update_task' task.id %}" class="update">Update</a>
                         <a href="{% url 'delete_task' task.pk %}" class="delete">Delete</a>
                     </td>
                 </tr>

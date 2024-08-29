@@ -6,21 +6,27 @@
     <title>Document</title>
     <style>
         form{
+            margin: auto;
             width: 50vw;
-            box-sizing: 0 0 3px 2px rgba(0, 0, 0, 0.3);
+            /* box-sizing:  */
             border-radius: 5px;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 5px;
+            align-items: center;
+        }
+        input{
+            padding: 1rem;
         }
     </style>
 </head>
 <body>
     <form action="{% url 'register' %}" method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        <!-- <label for="username"><input type="text" name="username"></label> -->
+        <label for="username">Enter Username:<input type="text" name="username"></label>
+        <label for="email">Enter Email: <input type="email" name="email" id="email"></label>
+        <label for="password1">Enter password: <input type="password" name="password1" id="password1"></label>
+        <label for="password2">Confirm password: <input type="password" name="password2" id="password2"></label>
         <input type="submit" value="Sign up">
         <p>Have an account? <a href="{% url 'login' %}">Login</a></p>
     </form>
