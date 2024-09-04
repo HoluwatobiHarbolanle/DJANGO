@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from todo_app.models import Task
+from todo_app.models import Task, User
 from rest_framework import viewsets, permissions
 from .serializers import TaskSerializer
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
